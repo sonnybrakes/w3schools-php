@@ -1,36 +1,28 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>PHP The global Keyword</h1>
-<h2>The global keyword is used to access a global variable from within a function. To do this, use the global keyword before the variables (inside the function):</h2>
-<h3>Example:</h3>
-
 <?php
-$x1 = 5;
-$y1 = 10;
+$h1 = "PHP The 'static' Keyword";
+$h2 = "Normally, when a function is completed/executed, all of its variables are deleted. However, sometimes we want a local variable NOT to be deleted. We need it for a further job.";
+$h3 = "To do this, use the static keyword when you first declare the variable:";
+$h4 = "Then, each time the function is called, that variable will still have the information it contained from the last time the function was called. Note: The variable is still local to the function.";
+
+echo "<h1>$h1</h1><br>";
+echo "<h2>$h2</h2><br>";
+echo "<h3>$h3</h3><br>";
 
 function myTest() {
-global $x1, $y1;
-$y1 = $x1 + $y1;
+static $x = 0;
+echo $x;
+$x++;
 }
+
+echo "<h3>$h4</h3><br>";
 
 myTest();
-echo $y1; // outputs 15
+myTest();
+myTest();
 ?>
 
-<h2>PHP also stores all global variables in an array called $GLOBALS[index]. The index holds the name of the variable. This array is also accessible from within functions and can be used to update global variables directly. The example above can be rewritten like this:</h2>
-<h3>Example:</h3>
-
-<?php
-$x2 = 5;
-$y2 = 10;
-
-function myTest2() {
-$GLOBALS['y2'] = $GLOBALS['x2'] + $GLOBALS['y2'];
-}
-
-myTest2();
-echo $y2; // outputs 15
-?>
 </body>
 </html>
