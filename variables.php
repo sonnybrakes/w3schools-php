@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html>
 <body>
+<h1>Global and Local Scope:</h1>
+<h2>A variable declared outside a function has a GLOBAL SCOPE and can only be accessed outside a function:</h2> <h3>Example:</h3>
 
-<h3>Output Variables</h3>
-<h4>Example: 1, Echo</h4>
 <?php
-$txt = "W3Schools.com";
-echo "I love $txt!";
+$x = 5; // global scope
+
+function myTest1() {
+// using x inside this function will generate an error
+echo "<p>Variable x inside function is: $x</p>";
+}
+myTest1();
+
+echo "<p>Variable x outside function is: $x</p>";
 ?>
 
-<h4>Example: 2, Concatenation</h4>
-<?php
-$txt = "W3Schools.com";
-echo "I love " . $txt . "!";
-?>
+<h2>A variable declared within a function has a LOCAL SCOPE and can only be accessed within that function:</h2>
+<h3>Example:</h3>
 
-<h4>Example: 3, Sum of two variables</h4>
 <?php
-$x = 5;
-$y = 4;
-echo $x + $y;
-?>
+function myTest2() {
+$y = 5; // local scope
+echo "<p>Variable y inside function is: $y</p>";
+}
+myTest2();
 
+// using y outside the function will generate an error
+echo "<p>Variable y outside function is: $y</p>";
+?>
 </body>
 </html>
