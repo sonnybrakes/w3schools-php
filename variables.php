@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Global and Local Scope:</h1>
-<h2>A variable declared outside a function has a GLOBAL SCOPE and can only be accessed outside a function:</h2> <h3>Example:</h3>
-
-<?php
-$x = 5; // global scope
-
-function myTest1() {
-// using x inside this function will generate an error
-echo "<p>Variable x inside function is: $x</p>";
-}
-myTest1();
-
-echo "<p>Variable x outside function is: $x</p>";
-?>
-
-<h2>A variable declared within a function has a LOCAL SCOPE and can only be accessed within that function:</h2>
+<h1>PHP The global Keyword</h1>
+<h2>The global keyword is used to access a global variable from within a function. To do this, use the global keyword before the variables (inside the function):</h2>
 <h3>Example:</h3>
 
 <?php
-function myTest2() {
-$y = 5; // local scope
-echo "<p>Variable y inside function is: $y</p>";
-}
-myTest2();
+$x1 = 5;
+$y1 = 10;
 
-// using y outside the function will generate an error
-echo "<p>Variable y outside function is: $y</p>";
+function myTest() {
+global $x1, $y1;
+$y1 = $x1 + $y1;
+}
+
+myTest();
+echo $y1; // outputs 15
+?>
+
+<h2>PHP also stores all global variables in an array called $GLOBALS[index]. The index holds the name of the variable. This array is also accessible from within functions and can be used to update global variables directly. The example above can be rewritten like this:</h2>
+<h3>Example:</h3>
+
+<?php
+$x2 = 5;
+$y2 = 10;
+
+function myTest2() {
+$GLOBALS['y2'] = $GLOBALS['x2'] + $GLOBALS['y2'];
+}
+
+myTest2();
+echo $y2; // outputs 15
 ?>
 </body>
 </html>
